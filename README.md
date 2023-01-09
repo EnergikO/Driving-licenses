@@ -1,66 +1,140 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Car Accounting System
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[🇷🇺 Русский](#rus)  
+[🇺🇸 English](#rus)  
 
-## About Laravel
+## RUS
+## Содержание
+* [Протокол обмена данными](#протокол-обмена-данными)
+    * [Входные данные](#входные-данные)
+    * [Выходные в ответе](#выходные-данные)
+* [Модели](#модели)
+    1. [Человек](#человек)
+    2. [Водительское Удостоверение (ВУ)](#водительское-удостоверение)
+    3. [Машина](#машина)
+* [Примеры api запросов](#примеры-api-запросов)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Протокол обмена данными
+### Входные данные
+    Для передачи данных в запрос просто используйте JSON формат  
+    Тем не менее, вы можете использовать GET параметры, если вам это нужно  
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Выходные данные
+    Сервер на выходе использует JSON формат
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Сервер **всегда** возвращает статус  
+> `status: 'success' | 'fail'`  
 
-## Learning Laravel
+Помимо статуса, также всегда будут возвращаться какие-то данные (в [документации](documentation/) можно узнать какие именно данные возвращает конкретный запрос)  
+> `data: {'key': 'value'}`  
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    Пожалуйста, учитывайте, что если данных нет, параметр будет передан со значением NULL
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+А ещё иногда сервер может вернуть сообщение (например, если что-то пошло не так)  
+> `message: 'Car with id='Optimus Prime' was not found.'`  
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Модели
+### Человек
+* id
+* passport_key
+* first_name
+* last_name
+***
 
-## Laravel Sponsors
+### Водительское Удостоверение (ВУ)
+* id
+* passport_key
+* first_name
+* last_name
+* phone_number (строка)
+* gender (Их только два, не  забывайте)
+* validity (строка)
+***
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Машина
+* id
+* brand
+* model
+* weight
+* max_weight
+* type_of_drive
+* engine_layout
+* fuel_type
+* power
+* fuel_consumption
+* state_license_plate
+* owner_id (человек) (многие к одному)
+* created_at
+* updated_at
 
-### Premium Partners
+## Примеры api запросов
+#### Все примеры ищите [в папке](examples/)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+***
 
-## Contributing
+## ENG
+## Content
+* [Communication protocol](#communication-protocol)
+    * [Input](#input)
+    * [Output](#output)
+* [Models](#models)
+    1. [Person](#person)
+    2. [Driver's License](#drivers-license)
+    3. [Car](#car)
+* [API request examples](#api-request-examples)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Communication protocol
+### Input
+    To pass data to the request, just use the JSON format
+    However, you can use GET parameters if you need to.
 
-## Code of Conduct
+### Output
+    The server output uses JSON format
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+The server **always** returns a status
+> `status: 'success' | 'fail'`
 
-## Security Vulnerabilities
+In addition to the status, some data will also always be returned (in the [documentation](documentation/) you can find out exactly what data a particular request returns)
+> `data: {'key': 'value'}`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    Please note that if there is no data, the parameter will be passed with a NULL value
 
-## License
+And sometimes the server may return a message (for example, if something went wrong)
+> `message: 'Car with id='Optimus Prime' was not found.'`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Models
+### Person
+* id
+* passport_key
+* first_name
+* last_name
+***
+
+### Driver's License
+* id
+* passport_key
+* first_name
+* last_name
+* phone_number (string)
+* gender (There are only two, don't forget)
+* validity (string)
+***
+
+### Car
+* id
+* brand
+* model
+* weight
+* max_weight
+* type_of_drive
+* engine_layout
+* fuel_type
+* power
+* fuel_consumption
+* state_license_plate
+* owner_id (person) (many to one)
+* created_at
+* updated_at
+
+## API request examples
+#### Look for all examples [here](examples/)
