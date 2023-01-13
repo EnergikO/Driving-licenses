@@ -1,7 +1,7 @@
 # Car Accounting System
 
 [🇷🇺 Русский](#rus)  
-[🇺🇸 English](#rus)  
+[🇺🇸 English](#eng)  
 
 ## RUS
 ## Содержание
@@ -10,7 +10,7 @@
     * [Выходные в ответе](#выходные-данные)
 * [Модели](#модели)
     1. [Человек](#человек)
-    2. [Водительское Удостоверение (ВУ)](#водительское-удостоверение)
+    2. [Водительское Удостоверение (ВУ)](#водительское-удостоверение--ву-)
     3. [Машина](#машина)
 * [Примеры api запросов](#примеры-api-запросов)
 
@@ -39,6 +39,8 @@
 * passport_key
 * first_name
 * last_name
+* phone_number (строка)
+* gender (Их только два, не  забывайте)
 ***
 
 ### Водительское Удостоверение (ВУ)
@@ -46,17 +48,18 @@
 * passport_key
 * first_name
 * last_name
-* phone_number (строка)
 * gender (Их только два, не  забывайте)
-* validity (строка)
+* expiration_date (дата)
+* vehicle_type
 ***
 
 ### Машина
 * id
 * brand
 * model
-* weight
-* max_weight
+* vehicle_type
+* weight (тонны)
+* max_weight (тонны)
 * type_of_drive
 * engine_layout
 * fuel_type
@@ -108,6 +111,8 @@ And sometimes the server may return a message (for example, if something went wr
 * passport_key
 * first_name
 * last_name
+* phone_number (string)
+* gender (There are only two, don't forget)
 ***
 
 ### Driver's License
@@ -115,17 +120,18 @@ And sometimes the server may return a message (for example, if something went wr
 * passport_key
 * first_name
 * last_name
-* phone_number (string)
 * gender (There are only two, don't forget)
-* validity (string)
+* expiration_date (date)
+* vehicle_type
 ***
 
 ### Car
 * id
 * brand
 * model
-* weight
-* max_weight
+* vehicle_type
+* weight (tons)
+* max_weight (tons)
 * type_of_drive
 * engine_layout
 * fuel_type

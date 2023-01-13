@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('driver_licenses', function (Blueprint $table) {
             $table->id();
-            $table->string('login')->unique();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('passport_key');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('gender');
+            $table->date('expiration_date');
+            $table->string('vehicle_type');
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('driver_licenses');
     }
 };
